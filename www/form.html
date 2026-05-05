@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Volunteer Site</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="myForm" action="proces.php" method="POST">
+        <div class="main_block">
+            <input type="text" class="username"  name="username" placeholder="Введите имя" required>
+            <div class="date_and_dir">
+                <input type="date" class="date_birth" name="date_birth" placeholder="Выберите дату рождения:" required>
+                <select class="direction" name="direction" required>
+                    <option value="Экология">Экология</option>
+                    <option value="Образование">Образование</option>
+                    <option value="Культура">Культура</option>
+                    <option value="Спорт">Спорт</option>
+                </select>
+            </div>
+        </div>
+        <div class="exp">
+            <h1>Есть ли у вас опыт?</h1><br>
+            <label class="experience-item">
+                <input type="checkbox" name="experience" value="Есть"> Опыт есть
+            </label>
+        </div>
+        <div class="type_help">
+            <h1>Выберите вид помощи:</h1>
+            <label class="type_help-option">
+                <input type="radio" name="type_help" value="Участие в субботнике"> Участие в субботнике
+            </label>
+            <label class="type_help-option">
+                <input type="radio" name="type_help" value="Помощь в организации мероприятия"> Помощь в организации мероприятия
+            </label>
+            <label class="type_help-option">
+                <input type="radio" name="type_help" value="Помощь пенсионерам"> Помощь пенсионерам
+            </label>
+        </div>
+        <button type="submit" class="butt_submit">Отправить</button>
+    </form>
+
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(e) {
+
+            const username = this.username.value;
+            const date_birth = this.date_birth.value;
+            const direction = this.direction.value;
+            const type_help = document.querySelector('input[name="type_help"]:checked')?.value || 'не выбрано';
+
+            alert("Здравствуйте, " + username + ", " + date_birth + " г.р.! \n" +
+                  "Вы выбрали направление: " + direction + "\n" +
+                  "Вид помощи: " + type_help);
+        });
+    </script>
+
+</body>
+</html>
+
+
