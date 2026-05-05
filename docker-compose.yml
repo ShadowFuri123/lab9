@@ -6,5 +6,3 @@ services:
     container_name: lab9_php
     volumes:
       - ./www:/var/www/html
-    depends_on:
-      - rabbitmq
