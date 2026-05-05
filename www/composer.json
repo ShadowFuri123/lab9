@@ -1,4 +1,7 @@
 {
+    "autoload": {
+        "classmap": ["www/"]
+    },
     "require-dev": {
         "phpunit/phpunit": "^10.5"
     },
