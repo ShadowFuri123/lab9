@@ -1,17 +1,14 @@
-FROM php:8.2-fpm
+FROM php:8.5-fpm
 
+RUN docker-php-ext-install pdo pdo_mysql
 
-RUN sed -i 's/deb.debian.org/mirror.yandex.ru/g' /etc/apt/sources.list.d/debian.sources || \
-    sed -i 's/deb.debian.org/mirror.yandex.ru/g' /etc/apt/sources.list && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends git unzip && \
-    docker-php-ext-install sockets && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+   zip unzip git \
+   && rm -rf /var/lib/apt/lists/*
+
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
-
-
-COPY composer.phar /usr/local/bin/composer
-RUN chmod +x /usr/local/bin/composer
+COPY ./code /var/www/html
 
 CMD ["php-fpm"]
